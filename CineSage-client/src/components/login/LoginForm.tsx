@@ -35,7 +35,7 @@ export const LoginForm = () => {
    };
 
    return (
-      <div className="min-h-screen flex items-center justify-center p-4">
+      <div className="min-h-full mt-16 flex items-center justify-center p-4">
          <div className="max-w-md w-full bg-white rounded-lg shadow-xl overflow-hidden">
             <div className="p-6 sm:p-8">
                <h2 className="text-3xl font-bold text-gray-800 text-center mb-6">Log In</h2>

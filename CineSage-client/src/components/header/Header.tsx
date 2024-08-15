@@ -53,7 +53,7 @@ export const Header = () => {
             </Dropdown>
             <Navbar.Toggle />
          </div>
-         <Navbar.Collapse className="text-white ml-32">{role === "admin" && <Link to={"/add"}>Add Movies</Link>}</Navbar.Collapse>
+         <Navbar.Collapse className="text-white m">{role === "admin" && <Link to={"/add"}>Add Movie</Link>}</Navbar.Collapse>
       </Navbar>
    );
 };

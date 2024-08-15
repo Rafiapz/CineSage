@@ -23,19 +23,21 @@ export const Cards: FC = () => {
    };
 
    return (
-      <div className="p-2 mt-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="p-2 mt-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 ">
          {movies?.map((ob: any) => (
-            <div key={ob?._id} className=" flex ">
-               <Card className="max-w-sm " onClick={() => handleView(ob?._id)}>
-                  <img src={ob?.poster} className="w-full h-auto min-h-32 object-cover" />
+            <div key={ob?._id} className="flex justify-center">
+               <Card className="w-full max-w-sm" onClick={() => handleView(ob?._id)}>
+                  <div className="w-full h-48 bg-white">
+                     <img src={ob?.poster} className="w-full h-full object-cover" alt={ob?.title} />
+                  </div>
                   <div className="p-5">
-                     <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{ob?.title}</h5>
-                     <p className="font-normal text-gray-700 dark:text-gray-400 mb-3">{ob?.description}</p>
+                     <h5 className="text-xl font-bold tracking-tight text-gray-900 dark:text-white mb-2">{ob?.title}</h5>
+                     <p className="font-normal text-gray-700 dark:text-gray-400 mb-3 line-clamp-3">{ob?.description}</p>
                      <div className="flex items-center">
-                        {Array.from({ length: ob?.rating }).map((star: any) => (
+                        {Array.from({ length: ob?.rating }).map((_, index) => (
                            <svg
-                              key={star}
-                              className="w-5 h-5 text-yellow-300 cursor-pointer"
+                              key={index}
+                              className="w-5 h-5 text-yellow-300"
                               fill="currentColor"
                               viewBox="0 0 20 20"
                               xmlns="http://www.w3.org/2000/svg"
