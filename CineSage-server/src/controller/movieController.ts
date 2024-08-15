@@ -23,7 +23,7 @@ export const addMovieController = async (req: Request, res: Response) => {
 export const fetchMoviesController = async (req: Request, res: Response) => {
 
     try {
-
+        console.log('called')
         const movies = await Movies.find({})
 
         res.status(200).json({ status: 'ok', data: movies })

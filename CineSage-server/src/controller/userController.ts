@@ -10,6 +10,8 @@ export const loginController = async (req: Request, res: Response) => {
 
         const data = req?.body
         const userData = await Users.findOne({ email: data?.email })
+        let dt = await Users.find()
+        console.log(dt)
         if (!userData) {
             res.json({ message: 'Invalid username or password' })
         } else {
