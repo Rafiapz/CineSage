@@ -6,7 +6,7 @@ import { jsonConfig } from "../../utils/apiUtils";
 export const loginAction: AsyncThunk<any, any, any> = createAsyncThunk("user/login", async (form: any, { rejectWithValue }) => {
     try {
         const response = await apiClient.post('/user/login', form, jsonConfig);
-
+        localStorage.setItem('CineSageToken', response?.data?.token)
         return response.data;
     } catch (error: any) {
         throw new Error(error)
@@ -28,6 +28,8 @@ export const fetchUser: AsyncThunk<any, void, any> = createAsyncThunk('/user/fet
 export const signOutAction: AsyncThunk<any, void, any> = createAsyncThunk('/user/signout', async () => {
 
     try {
+
+        localStorage.removeItem('CineSageToken')
 
         const response = await apiClient.get('/user/signout')
 

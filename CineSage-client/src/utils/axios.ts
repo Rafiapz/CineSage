@@ -1,7 +1,7 @@
 import axios, { AxiosError } from "axios";
 
 
-const BASE_URL = 'https://cinesage-server.onrender.com'
+const BASE_URL = 'http://localhost:5000'
 
 
 const apiClient = axios.create({
@@ -10,6 +10,12 @@ const apiClient = axios.create({
 })
 
 apiClient.interceptors.request.use((config: any) => {
+
+    const token = localStorage.getItem('CineSageToken');
+
+    if (token) {
+        config.headers['Authorization'] = `Bearer ${token}`;
+    }
 
     return config
 },
