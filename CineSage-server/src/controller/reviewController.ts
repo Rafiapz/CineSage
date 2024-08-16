@@ -11,7 +11,6 @@ export const createReviewController = async (req: Request, res: Response) => {
         const userId = user?.id
         data.userId = userId
 
-        console.log('admin id', userId)
         await Reviews.create(data)
         const all = await Reviews.find({ movieId: data?.movieId })
         let rating = 0

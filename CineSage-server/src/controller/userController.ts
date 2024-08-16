@@ -107,8 +107,6 @@ export const loginWithGoogle = async (req: Request, res: Response) => {
 
                 }
 
-
-
                 const newUser = await Users.create(userData)
 
                 if (newUser) {

@@ -1,15 +1,36 @@
 import { Request, Response } from 'express'
 import Movies from '../model/MoviesModel'
+const cloudinary = require('cloudinary').v2
+import fs from 'fs'
+
 
 export const addMovieController = async (req: Request, res: Response) => {
 
     try {
 
+        const cloudName = process.env.cloudName
+        const apiKey = process.env.cloudApiKey
+        const apiSecret = process.env.cloudApiSecret
+
+        cloudinary.config({
+            cloud_name: cloudName,
+            api_key: apiKey,
+            api_secret: apiSecret
+        });
+
+        const result = await cloudinary.uploader.upload(req?.file?.path);
+
         let data = req?.body
         data.rating = 0
-        data.poster = `${process?.env.BACK_END_URL}/image/posters/${req?.file?.filename}`
+        data.poster = result?.url
 
         await Movies.create(data)
+        const path = req?.file?.path || ''
+        fs.unlink(path, (err: any) => {
+            if (err) {
+                console.log('failed to delete file')
+            }
+        })
 
         res.status(200).json({ status: 'ok', message: "success" })
 
@@ -23,7 +44,7 @@ export const addMovieController = async (req: Request, res: Response) => {
 export const fetchMoviesController = async (req: Request, res: Response) => {
 
     try {
-        console.log('called')
+
         const movies = await Movies.find({})
 
         res.status(200).json({ status: 'ok', data: movies })
@@ -38,12 +59,7 @@ export const fetchMovieDetailsController = async (req: Request, res: Response) =
     try {
 
         const id = req?.params?.id
-
-
         const details = await Movies.findOne({ _id: id })
-
-
-
         res.status(200).json({ status: 'ok', data: details })
 
     } catch (error: any) {
