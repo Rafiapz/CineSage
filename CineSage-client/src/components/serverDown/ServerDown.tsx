@@ -1,8 +1,6 @@
-import React from "react";
-
 const ServerDown = () => {
    return (
-      <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-purple-600 to-blue-500">
+      <div className="flex items-center justify-center min-h-screen bg-gray-200">
          <div className="px-8 py-10 text-center bg-white rounded-xl shadow-2xl transform transition-all hover:scale-105 duration-500">
             <div className="mb-6">
                <svg

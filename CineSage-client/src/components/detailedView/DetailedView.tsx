@@ -14,7 +14,6 @@ const DetailedView = () => {
    const id = searchQuery.get("id");
    const allReviews: any = useSelector((state: RootState) => state?.user?.reviews?.data);
    const userData: any = useSelector((state: RootState) => state?.user?.auth?.data);
-   const [reviewed, setReviewed] = useState<boolean>(false);
 
    useEffect(() => {
       fetchDataAllReviews();

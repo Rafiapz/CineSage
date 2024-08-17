@@ -3,7 +3,7 @@ import apiClient from "../../utils/axios";
 import { jsonConfig } from "../../utils/apiUtils";
 
 
-export const loginAction: AsyncThunk<any, any, any> = createAsyncThunk("user/login", async (form: any, { rejectWithValue }) => {
+export const loginAction: AsyncThunk<any, any, any> = createAsyncThunk("user/login", async (form: any) => {
     try {
         const response = await apiClient.post('/user/login', form, jsonConfig);
         localStorage.setItem('CineSageToken', response?.data?.token)
@@ -57,7 +57,8 @@ export const fetchallReviewsApiCall: AsyncThunk<any, any, any> = createAsyncThun
 export const loginWithGoogle: AsyncThunk<any, any, any> = createAsyncThunk("/auth/google", async (accessToken: any, { rejectWithValue }) => {
     try {
         const response = await apiClient.post("/user/login-with-google", { googleAccesToken: accessToken });
-        console.log(response.data);
+
+        localStorage.setItem('CineSageToken', response?.data?.token)
 
         return response.data;
     } catch (error: any) {
